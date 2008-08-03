@@ -1,0 +1,17 @@
+---
+hostdest:
+    name     : Equinix Ashburn
+    latitude : '-77.4615'
+    longitude: '39.02230'
+kml:
+    size: 200
+    gzip: true
+    log : log/expire.log
+capture:
+    type: file
+    device: 'matrixport80.pcap'
+log:
+    enable: true
+    level: debug
+    file: log/geoatom.log
+    verbose: false
