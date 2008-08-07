@@ -1,25 +1,37 @@
-AtomEarth beta
-by Thomas Gallaway
+--------------------------------------------------------
+AtomEarth live: Realtime PCAP to Google Earth Feeder 0.5
+--------------------------------------------------------
 
+Code: Thomas Gallaway
++++++++++++++++++++++
 
-Configuration:
----
-setup:
-    geoipdb: '../GeoLiteCity.dat'
+STARTING
+--------
+ruby start.rb
+
+CONFIGURATION
+-------------
+edit the config/atomearth.yaml
+
+geoipdb: Current location of the MaxMind GeoLiteCity database
+  Example: '../GeoLiteCity.dat'
+  
 capturelocation:
-    name     : Equinix Ashburn
-    latitude : '-77.4615'
-    longitude: '39.02230'
-    networks : ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"]
+    name: Name of your capture location
+      Example: Equinix Ashburn
+    latitude: Latitude of the capture location 
+      Example: '-77.4615'
+    longitude: Longitude of the capture location
+      Example: '39.02230'
+    networks: Networks at the capture location
+      Example: ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"]
 kml:
-    size: 50
-    gzip: true
-    log : log/expire.log
+    size: How many items to display
+      Example: 50
+    gzip: Gzip compression for KML (not yet implemented)
+      Example: true
 capture:
-    type: file
-    device: '../matrixget80.pcap'
-log:
-    enable: true
-    level: debug
-    file: log/geoatom.log
-    verbose: false
+    type: Type of capture. Can be file or interface
+      Example: file
+    device: What device or file to capture from.
+      Example: '../matrixget80.pcap' (File) 'eth3 -s 1500' (ethernet interface)

@@ -1,6 +1,6 @@
 class Conf
     def initialize
-        @config = open(Dir.pwd+'/config/geoatom.yaml') { |f| YAML.load f }
+        @config = open(Dir.pwd+'/config/atomearth.yaml') { |f| YAML.load f }
     end
     def loaded
       true
@@ -26,9 +26,6 @@ class Conf
     def kmlgzip
         @config['kml']['gzip']
     end
-    def kmllogfile
-        @config['kml']['log']
-    end
     def capdev
         case @config['capture']['type']
         when 'file'
@@ -37,12 +34,5 @@ class Conf
           "-i #{@config['capture']['device']}"
         end
     end
-    def logverbose
-      @config['log']['verbose']
-    end
-    def logfile
-      Logger.new(@config['log']['file']) if @config['log']['enable']
-    end
-
 end
 
