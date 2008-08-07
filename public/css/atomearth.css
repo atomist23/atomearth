@@ -1,12 +1,13 @@
 body {
-color:#222222;
-font-family:Arial,Helvetica,Sans-serif;
-font-size:13px;
-font-size-adjust:none;
-font-style:normal;
-font-variant:normal;
-font-weight:normal;
-line-height:1.5;
+	background-color:#DEDEDE;
+	color:#222222;
+	font-family:Arial,Helvetica,Sans-serif;
+	font-size:13px;
+	font-size-adjust:none;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.5;
 }
 
 #content { margin-left: 2em; }
@@ -15,20 +16,37 @@ line-height:1.5;
 	padding: 0px;
 }
 #wrapper {
-	width: 500px;
+	background-color:#DEDEDE;
+	border:1px solid #555555;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px #555 solid;
-	background-color: #DEDEDE;
-	height: 450px;
+	width:259px;
 }
 
+#leftstats {
+	float: left;
+	position: absolute;
+	border: 5px solid #000033;
+}
+#map {
+	width: 600px;
+	float: right;
+}
+
+h3 {
+	color: #F9F9F9;
+	background: #000033;
+	font-weight: bold;
+	text-align: right;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
 div#startstop {
-	background-color:#F9F9F9;
+	background-color:#FFAA00;
 	border-top:3px solid #999;
 	float:left;
 	height:20px;
-	width:100%;
+	width:250px;
 	float:left;
 }
 
@@ -37,37 +55,23 @@ ol, ul {
 	list-style-position:outside;
 	list-style-type:none;
 }
+
 #header {
 	padding: 0px;
 	margin: 0px;
-	width: 100%;
-	height: 20px;
-	border-bottom: 2px solid #888;
-	background-color: #EFEFEF;
+	height: 64px;
+	background-color: #000033;
 }
 
-#footer {
-	margin-top: 145px;
-	height: 30px;
-}
 
 #logo {
 	float: left;
-	padding-left: 15px;
 }
 
 #time {
 	float: right;
 	padding-right: 15px;
-}
-
-#livestats {
-	width: 95%;
-	height: 250px;
-	border: 1px solid #444;
-	margin-top: 10px;
-	margin-left: auto;
-	margin-right: auto;
+	color: #FFFFFF;
 }
 
 #header ul li a {
@@ -89,3 +93,24 @@ a:hover, a:active {
 a:link, a:visited {
 	color:#3D4D5B;
 }
+
+#load {
+}
+
+#load_box            { width:250px; height:20px; }  
+#load_percent           { background:#FFD700; height:20px; text-align: center;}  
+
+#configtable {
+	width: 250px;
+}
+
+#infotable {
+	width: 250px;
+}
+
+.highlight		{ background:#d5fcdc; }
+.even			{ background:#fff; }
+.mo				{ background:#e3f1fb; }
+.odd			{ background:#eee; }
+.zebra th		{ padding:5px; background:#ddd; border-bottom:1px solid #999; text-align:left; font-weight:bold; }
+.zebra td		{ padding:5px 20px 5px 5px; `-bottom:1px solid #ddd; }

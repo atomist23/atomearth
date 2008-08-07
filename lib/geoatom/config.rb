@@ -5,14 +5,20 @@ class Conf
     def loaded
       true
     end
+    def geoipdb
+        @config['setup']['geoipdb']
+    end
     def hostlat
-        @config['hostdest']['latitude']
+        @config['capturelocation']['latitude']
     end
     def hostlong
-        @config['hostdest']['longitude']
+        @config['capturelocation']['longitude']
     end
     def hostname
-        @config['hostdest']['name']
+        @config['capturelocation']['name']
+    end
+    def intnets
+      @config['capturelocation']['networks']
     end
     def kmlsize
         @config['kml']['size']
@@ -37,8 +43,6 @@ class Conf
     def logfile
       Logger.new(@config['log']['file']) if @config['log']['enable']
     end
-    def intnets
-      ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"]
-    end
+
 end
 

@@ -1,0 +1,25 @@
+AtomEarth beta
+by Thomas Gallaway
+
+
+Configuration:
+---
+setup:
+    geoipdb: '../GeoLiteCity.dat'
+capturelocation:
+    name     : Equinix Ashburn
+    latitude : '-77.4615'
+    longitude: '39.02230'
+    networks : ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"]
+kml:
+    size: 50
+    gzip: true
+    log : log/expire.log
+capture:
+    type: file
+    device: '../matrixget80.pcap'
+log:
+    enable: true
+    level: debug
+    file: log/geoatom.log
+    verbose: false

@@ -1,76 +1,83 @@
 class Capture
 
-  attr_accessor :urls
-
   def initialize
-    #@log.info('Capture') { "Initializing" }    
     @urls = Livebuffer.new(150)
-    @running = false
     @count = Query.new
+    @alive = false
   end
 
   def state
-    @running = @capthread.alive? if @capthread
-    return @running
+    if @capthread
+      return @capthread.alive?
+    else 
+      return false
+    end
   end
-  
+
   def current
     @urls.to_a
   end
 
   def stats
-    @count.avg.to_json
+    return {"atomearth" => {"stats" => @count.get, "capturing" => @alive}}.to_json
   end
 
   def stop
     Thread.kill(@capthread)
   end
 
-  def process(pkt)
-    data = pkt.tcp_data
-    if data {
-    #@log.info('Datacap') { "Datapacket received" } if GeoAtom::CONF.logverbose
-    request_line, data = data.split("\r\n", 2)
-    next unless data
-    next unless request_line =~ /^GET\s+(\S+)/ 
-    path = $1
-    headers = data.split("\r\n\r\n", 2).first.split("\r\n")
-    headers = headers.map { |line| line.split(': ', 2) }.flatten
-    next unless headers.length % 2 == 0
-    #@log.info('Datacap') { "Valid header decoded" } if GeoAtom::CONF.logverbose
-    headers = Hash[*headers]
-
-    host = headers['Host'] || pkt.dst.to_s
-    host << ":#{pkt.dst_port}" if pkt.dport != 80
-    #@log.info('Datacap') { "#{host} request extracted" } if GeoAtom::CONF.logverbose
-
-    srcpktip = pkt.src.to_num_s
-    data = Hash.new
-    data = {
-      :intsrcip => is_intnet(srcpktip),
-      :srchost => pkt.src.to_s, 
-      :srcip => srcpktip, 
-      :dsthost => host, 
-      :dstip => pkt.dst.to_num_s, 
-      :url => path }
-      @urls << data
-      @count.add
-      #puts "Ring!"
-      #@log.info('Datacap') { "Inserting #{data} into urls" } if GeoAtom::CONF.logverbose
-    }
-  end
   def start
-      #@log.info('Datacap') { "Setting up capture" }
-      httpdump = Pcaplet.new GeoAtom::CONF.capdev
-      #@log.info('Datacap') { "Capture for #{GeoAtom::CONF.capdev} started" }
+    puts "starting"
+      rd, wr = IO.pipe
 
-      filter = Pcap::Filter.new 'tcp and dst port 80', httpdump.capture
-      #@log.info('Datacap') { "Filter loaded" }
+      fork do
+        rd.close
 
-      httpdump.add_filter filter      
+        httpdump = Pcaplet.new GeoAtom::CONF.capdev
+        
+        filter = Pcap::Filter.new 'tcp and dst port 80', httpdump.capture
+        httpdump.add_filter filter
+
+        httpdump.each_packet do |pkt|
+          data = pkt.tcp_data
+          next unless data
+          request_line, data = data.split("\r\n", 2)
+          next unless data
+          next unless request_line =~ /^GET\s+(\S+)/
+          path = $1
+          next unless path =~ /.htm|.jsp|.asp|.cfm|.php|\/$/
+          headers = data.split("\r\n\r\n", 2).first.split("\r\n")
+          headers = headers.map { |line| line.split(': ', 2) }.flatten
+          next unless headers.length % 2 == 0
+          headers = Hash[*headers]
+
+          host = headers['Host'] || pkt.dst.to_s
+          host << ":#{pkt.dst_port}" if pkt.dport != 80
+
+          wr.puts [is_intnet(pkt.src.to_num_s), pkt.src.to_s, pkt.src.to_num_s, host, pkt.dst.to_num_s, path].inspect
+        end      
+        wr.close     
+      end
+
+      wr.close
+
+      @capthread = Thread.start do
+        @alive = true
+        until rd.eof? do
+          line = rd.gets
+          break if line.nil?
+          @urls << eval(line)
+          @count.add
+        end
+      end
       
-      @capthread = fork {
-        httpdump.each_packet {|pkt| process(pkt) }
-      }
+      @updatethread = Thread.start do
+        while @capthread.alive? do
+          @count.update
+          sleep 1
+        end
+        @count.update
+        @alive = false
+      end
     end
-  end
+end

@@ -1,7 +1,9 @@
+Thread.abort_on_exception = true
 require 'rubygems'
 require 'lib/geoatom'
+
 CAP = GeoAtom.capsetup
-GEO = GeoIPCity::Database.new('data/GeoLiteCity.dat')
+GEO = GeoIPCity::Database.new(GeoAtom::CONF.geoipdb)
 
 require 'ramaze'
 acquire __DIR__/:controller/'*'
