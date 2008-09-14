@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+# atomearth.rb - KML Generator from pcap data
+# Copyright 2008 Thomas Gallaway <atomist@gmail.com>
+#
+# Licensed under the GNU General Public License v2 (see LICENSE)
+#Thread.abort_on_exception = true
+#!/usr/bin/env ruby
+
+require File.join(File.dirname(__FILE__), '..', 'lib', 'atomearth')
+
+cmd = ARGV.shift
+
+while ARGV.size > 0 do
+  puts "#{ARGV.shift} invalid option"
+end
+
+AtomEarth.run! cmd

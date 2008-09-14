@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: MainController</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">MainController</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/earthcontroller_rb.html">
+                lib/earthcontroller.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Ramaze::Controller
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This is the controller for ramaze
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000003">capture</a>&nbsp;&nbsp;
+      <a href="#M000005">error</a>&nbsp;&nbsp;
+      <a href="#M000004">feed</a>&nbsp;&nbsp;
+      <a href="#M000008">img</a>&nbsp;&nbsp;
+      <a href="#M000001">index</a>&nbsp;&nbsp;
+      <a href="#M000002">info</a>&nbsp;&nbsp;
+      <a href="#M000007">jscript</a>&nbsp;&nbsp;
+      <a href="#M000006">stylesheet</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GEO</td>
+          <td>=</td>
+          <td class="context-item-value">GeoIPCity::Database.new(CONFIG.geoip)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Load GEO Geo IP City Database
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CAP</td>
+          <td>=</td>
+          <td class="context-item-value">AtomEarth::Capture.new</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Initialize the atomearth <a href="MainController.html#M000003">capture</a>
+model for ramaze to access
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="#M000003" class="method-signature">
+          <span class="method-name">capture</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000003-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000003-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/earthcontroller.rb, line 18</span>
+18:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">capture</span>
+19:     <span class="ruby-comment cmt"># Start / Stop capture toggle via json call</span>
+20:     <span class="ruby-constant">CAP</span>.<span class="ruby-identifier">state</span> <span class="ruby-value">? </span><span class="ruby-ivar">@capthread</span> = <span class="ruby-constant">CAP</span>.<span class="ruby-identifier">stop</span> <span class="ruby-operator">:</span> <span class="ruby-constant">CAP</span>.<span class="ruby-identifier">start</span>
+21:     <span class="ruby-constant">CAP</span>.<span class="ruby-identifier">state</span>
+22:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="#M000005" class="method-signature">
+          <span class="method-name">error</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000005-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/earthcontroller.rb, line 31</span>
+31:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">error</span>
+32:     <span class="ruby-comment cmt"># Errorhandler</span>
+33:     <span class="ruby-ivar">@error</span> = <span class="ruby-constant">Ramaze</span><span class="ruby-operator">::</span><span class="ruby-constant">Dispatcher</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>.<span class="ruby-identifier">current</span>
+34:     <span class="ruby-node">%{
+35:       &lt;?xml version=&quot;1.0&quot; ?&gt;
+36:       &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.1//EN&quot;
+37:         &quot;http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd&quot;&gt;
+38:       &lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+39:       &lt;head&gt;
+40:         &lt;title&gt;AtomEarth Earth&lt;/title&gt;
+41:         &lt;script type=&quot;text/javascript&quot; src=&quot;/jscript/mootools&quot;&gt;&lt;/script&gt;
+42:         &lt;script type=&quot;text/javascript&quot; src=&quot;/jscript/moomore&quot;&gt;&lt;/script&gt;
+43:         &lt;script type=&quot;text/javascript&quot; src=&quot;/jscript/error&quot;&gt;&lt;/script&gt;
+44:         &lt;link rel=&quot;stylesheet&quot; href=&quot;/stylesheet&quot; type=&quot;text/css&quot;/&gt;
+45:       &lt;/head&gt;
+46:       &lt;body&gt;
+47:         &lt;div id=&quot;error&quot; class=&quot;wrapper&quot;&gt;
+48:           &lt;a id=&quot;error_toggle&quot; name=&quot;error_toggle&quot; href=&quot;#&quot;&gt;&lt;h1&gt;Error: #{@error.message}&lt;/h1&gt;&lt;/a&gt;
+49:           &lt;div id=&quot;error_slide&quot;&gt;
+50:             #{@error.backtrace.join('&lt;br/&gt;')}
+51:           &lt;/div&gt;
+52:                 &lt;/div&gt;
+53:                 &lt;div class=&quot;footer&quot; id=&quot;footer&quot;&gt;
+54:           #{CAP.version}  
+55:         &lt;/div&gt;
+56:       &lt;/body&gt;
+57:       &lt;/html&gt;
+58:     }</span>
+59:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="#M000004" class="method-signature">
+          <span class="method-name">feed</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000004-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000004-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/earthcontroller.rb, line 24</span>
+24:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">feed</span>
+25:     <span class="ruby-comment cmt"># Return a XML/KML feed for google earth</span>
+26:     <span class="ruby-identifier">feed</span> = <span class="ruby-identifier">getfeed</span>
+27:     <span class="ruby-identifier">response</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-value str">'text/xml'</span>
+28:     <span class="ruby-identifier">respond</span> <span class="ruby-identifier">feed</span>
+29:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="#M000008" class="method-signature">
+          <span class="method-name">img</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000008-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000008-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/earthcontroller.rb, line 73</span>
+73:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">img</span> <span class="ruby-identifier">name</span>
+74:     <span class="ruby-comment cmt"># Return a png image /img/</span>
+75:     <span class="ruby-identifier">response</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-value str">'image/png'</span>
+76:     <span class="ruby-identifier">respond</span> <span class="ruby-identifier">image</span>(<span class="ruby-identifier">name</span>)
+77:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="#M000001" class="method-signature">
+          <span class="method-name">index</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000001-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000001-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/earthcontroller.rb, line 8</span>
+ 8:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">index</span>
+ 9:     <span class="ruby-comment cmt"># Index page /</span>
+10:     <span class="ruby-identifier">page</span>
+11:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="#M000002" class="method-signature">
+          <span class="method-name">info</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000002-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000002-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/earthcontroller.rb, line 13</span>
+13:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">info</span>
+14:     <span class="ruby-comment cmt"># Stats in json format for the realtime statistics</span>
+15:     <span class="ruby-constant">CAP</span>.<span class="ruby-identifier">stats</span>
+16:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="#M000007" class="method-signature">
+          <span class="method-name">jscript</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000007-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000007-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/earthcontroller.rb, line 67</span>
+67:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jscript</span> <span class="ruby-identifier">name</span>
+68:     <span class="ruby-comment cmt"># Return javascript /jscript/</span>
+69:     <span class="ruby-identifier">response</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-value str">'text/javascript'</span>
+70:     <span class="ruby-identifier">respond</span> <span class="ruby-identifier">javascript</span>(<span class="ruby-identifier">name</span>)
+71:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="#M000006" class="method-signature">
+          <span class="method-name">stylesheet</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000006-source">
+<pre>
+    <span class="ruby-comment cmt"># File lib/earthcontroller.rb, line 61</span>
+61:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stylesheet</span>
+62:     <span class="ruby-comment cmt"># Return the css stylesheet /stylesheet</span>
+63:     <span class="ruby-identifier">response</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-value str">'text/css'</span>
+64:     <span class="ruby-identifier">respond</span> <span class="ruby-identifier">css</span>
+65:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

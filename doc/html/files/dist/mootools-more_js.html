@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: mootools-more.js</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>mootools-more.js</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>dist/mootools-more.js
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Sun Sep 14 02:19:42 -0400 2008</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+//MooTools More, &lt;<a
+href="http://mootools.net/more">mootools.net/more</a>&gt;. Copyright (c)
+2006-2008 Valerio Proietti, &lt;<a
+href="http://mad4milk.net">mad4milk.net</a>&gt;, MIT Style License.
+</p>
+<p>
+Fx.Slide=new <a
+href="http://'offset'+this.layout.capitalize()">Class({Extends:Fx,options:{mode:'vertical'},initialize:function(element,options){this.addEvent('complete',function(){this.open=(this.wrapper</a>!=0);if(this.open&amp;&amp;Browser.Engine.webkit419)this.element.dispose().inject(this.wrapper);},true);this.element=this.subject=$(element);this.parent(options);var
+wrapper=this.element.retrieve(&#8216;wrapper&#8217;);this.wrapper=wrapper||new
+<a
+href="http://0">Element('div',{styles:$extend(this.element.getStyles('margin','position'),{'overflow':'hidden'})}).wraps(this.element);this.element.store('wrapper',this.wrapper).setStyle('margin',0);this.now=[];this.open=true;},vertical:function(){this.margin='margin-top';this.layout='height';this.offset=this.element.offsetHeight;},horizontal:function(){this.margin='margin-left';this.layout='width';this.offset=this.element.offsetWidth;},set:function(now){this.element.setStyle(this.margin,now</a>);this.wrapper.setStyle(this.layout,now[1]);return
+this;},compute:function(from,to,delta){var now=[];var <a
+href="http://i">x=2;x.times(function(i){now[i]=Fx.compute(from</a>,to[i],delta);});return
+now;},start:function(how,mode){if(!this.check(arguments.callee,how,mode))return
+<a href="http://mode||this.options.mode">this;this</a>();var
+margin=this.element.getStyle(this.margin).toInt();var
+layout=this.wrapper.getStyle(this.layout).toInt();var <a
+href="http://0,this.offset">caseIn=[[margin,layout],</a>];var <a
+href="http://-this.offset,0">caseOut=[[margin,layout],</a>];var <a
+href="http://'offset'+this.layout.capitalize()">start;switch(how){case'in':start=caseIn;break;case'out':start=caseOut;break;case'toggle':start=(this.wrapper</a>==0)?caseIn:caseOut;}
+return this.parent(start[0],start[1]);},slideIn:function(mode){return
+this.start(&#8216;in&#8217;,mode);},slideOut:function(mode){return <a
+href="http://mode||this.options.mode">this.start('out',mode);},hide:function(mode){this</a>();this.open=false;return
+<a href="http://-this.offset,0">this.set(</a>);},<a
+href="http://mode||this.options.mode">show:function(mode){this</a>();this.open=true;return
+<a
+href="http://0,this.offset">this.set(</a>);},toggle:function(mode){return
+this.start(&#8216;toggle&#8217;,mode);}});Element.Properties.slide={set:function(options){var
+slide=this.retrieve(&#8216;slide&#8217;);if(slide)slide.cancel();return
+this.eliminate(&#8216;slide&#8217;).store(&#8216;slide:options&#8217;,$extend({<a
+href="../.././'cancel'},options));},get:function(options){if(options||!this.retrieve('slide')){if(options||!this.retrieve('slide:options'))this.set('slide',options);this.store('slide',new">'cancel'},options));},get:function(options){if(options||!this.retrieve('slide')){if(options||!this.retrieve('slide:options'))this.set('slide',options);this.store('slide',new</a>
+Fx.Slide(this,this.retrieve(&#8216;slide:options&#8217;)));} return
+this.retrieve(&#8216;slide&#8217;);}};Element.implement({slide:function(how,mode){how=how||&#8217;toggle&#8217;;var
+slide=this.get(&#8216;slide&#8217;),toggle;switch(how){case&#8216;hide&#8217;:slide.hide(mode);break;case&#8216;show&#8217;:slide.show(mode);break;case&#8216;toggle&#8217;:var
+flag=this.retrieve(&#8216;slide:flag&#8217;,slide.open);slide[(flag)?&#8217;slideOut&#8217;:&#8217;slideIn&#8217;](mode);this.store(&#8216;slide:flag&#8217;,!flag);toggle=true;break;default:slide.start(how,mode);}
+if(!toggle)this.eliminate(&#8216;slide:flag&#8217;);return
+this;}});Fx.Scroll=new
+Class({Extends:Fx,options:{offset:{&#8216;x&#8217;:0,&#8217;y&#8217;:0},wheelStops:true},initialize:function(element,options){this.element=this.subject=$(element);this.parent(options);var
+cancel=this.cancel.bind(this,false);if($type(this.element)!=&#8217;element&#8217;)this.element=$(this.element.getDocument().body);var
+stopper=this.element;if(this.options.wheelStops){this.addEvent(&#8216;start&#8217;,function(){stopper.addEvent(&#8216;mousewheel&#8217;,cancel);},true);this.addEvent(&#8216;complete&#8217;,function(){stopper.removeEvent(&#8216;mousewheel&#8217;,cancel);},true);}},set:function(){var
+now=Array.flatten(arguments);this.element.scrollTo(now[0],now[1]);},compute:function(from,to,delta){var
+now=[];var
+x=2;x.times(function(i){now.push(Fx.compute(from[i],to[i],delta));});return
+now;},start:function(x,y){if(!this.check(arguments.callee,x,y))return
+this;var
+offsetSize=this.element.getSize(),scrollSize=this.element.getScrollSize();var
+scroll=this.element.getScroll(),values={x:x,y:y};for(var z in values){var
+max=scrollSize[z]-offsetSize[z];if($chk(values[z]))values[z]=($type(values[z])==&#8217;number&#8217;)?values[z].limit(0,max):max;else
+<a href="http://z">values[z]=scroll[z];values[z]+=this.options.offset</a>;}
+return <a
+href="http://scroll.x,scroll.y">this.parent(</a>,[values.x,values.y]);},toTop:function(){return
+this.start(false,0);},toLeft:function(){return
+this.start(0,false);},toRight:function(){return
+this.start(&#8216;right&#8217;,false);},toBottom:function(){return
+this.start(false,&#8217;bottom&#8217;);},toElement:function(el){var
+position=$(el).getPosition(this.element);return
+this.start(position.x,position.y);}});
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

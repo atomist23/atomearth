@@ -1,0 +1,14 @@
+= Version 0.0.2
+=== Sun Sep 14 02:29:00 EST 2008
+* removed public folder
+* created generators for css/jscript/img
+* daemonize script
+* logging
+* new configuration file
+
+= Version 0.0.1
+=== Fru Aug 08 22:00:00 EST 2008
+* initial release
+
+back[link:files/README.html]
+

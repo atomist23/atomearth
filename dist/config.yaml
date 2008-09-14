@@ -1,0 +1,13 @@
+---
+pid	: /tmp/atomearth.pid
+log	: false
+port    : 7000
+adapter : thin
+geoip   : '/Users/atom/ruby/GeoLiteCity.dat'
+name    : Equinix Ashburn
+host	: Swirly
+lat     : '-77.4615'
+long    : '39.02230'
+intnet  : ["10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"]
+device  : '-r /Users/atom/ruby/matrixget80.pcap'
+size    : 50
